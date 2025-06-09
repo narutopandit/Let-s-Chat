@@ -1,8 +1,8 @@
 
-```markdown
-# Let's Chat - Real-time Chat Application
 
-![Let's Chat Logo](./frontend/public/favicon.svg)
+
+          
+# Let's Chat - Real-time Chat Application
 
 A modern real-time chat application built with the MERN stack (MongoDB, Express.js, React, Node.js) that allows users to connect and communicate instantly.
 
@@ -42,7 +42,6 @@ A modern real-time chat application built with the MERN stack (MongoDB, Express.
 ## Project Structure
 
 ```
-
 ├── backend/                # Backend server code
 │   ├── controllers/        # Request handlers
 │   ├── lib/                # Utility functions
@@ -51,15 +50,14 @@ A modern real-time chat application built with the MERN stack (MongoDB, Express.
 │   ├── routes/             # API routes
 │   └── server.js           # Server entry point
 └── frontend/              # Frontend React application
-├── Context/            # React context providers
-├── public/             # Static assets
-└── src/                # Source code
-├── assets/         # Images and other assets
-├── components/     # React components
-├── lib/            # Utility functions
-└── pages/          # Page components
-
-````
+    ├── Context/            # React context providers
+    ├── public/             # Static assets
+    └── src/                # Source code
+        ├── assets/         # Images and other assets
+        ├── components/     # React components
+        ├── lib/            # Utility functions
+        └── pages/          # Page components
+```
 
 ## Getting Started
 
@@ -75,52 +73,44 @@ A modern real-time chat application built with the MERN stack (MongoDB, Express.
    ```bash
    git clone https://github.com/yourusername/lets-chat.git
    cd lets-chat
-````
+   ```
 
 2. Install backend dependencies
-
    ```bash
    cd backend
    npm install
    ```
 
 3. Install frontend dependencies
-
    ```bash
    cd ../frontend
    npm install
    ```
 
 4. Create environment variables
-
-* Backend `.env`
-
-  ```env
-  PORT=5000
-  MONGODB_URI=your_mongodb_connection_string
-  JWT_SECRET=your_jwt_secret
-  CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-  CLOUDINARY_API_KEY=your_cloudinary_api_key
-  CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-  ```
-
-* Frontend `.env`
-
-  ```env
-  VITE_BACKEND_URL=http://localhost:5000
-  ```
+   - Backend (.env)
+     ```
+     PORT=5000
+     MONGODB_URI=your_mongodb_connection_string
+     JWT_SECRET=your_jwt_secret
+     CLOUDINARY_CLOUD_NAME=your_cloudinary_name
+     CLOUDINARY_API_KEY=your_cloudinary_api_key
+     CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+     ```
+   - Frontend (.env)
+     ```
+     VITE_BACKEND_URL=http://localhost:5000
+     ```
 
 ### Running the Application
 
 1. Start the backend server
-
    ```bash
    cd backend
    npm run server
    ```
 
 2. Start the frontend development server
-
    ```bash
    cd frontend
    npm run dev
@@ -131,62 +121,44 @@ A modern real-time chat application built with the MERN stack (MongoDB, Express.
 ## API Endpoints
 
 ### Authentication
-
-* `POST /api/auth/signup` - Register a new user
-* `POST /api/auth/login` - Login a user
-* `GET /api/auth/check` - Check authentication status
+- `POST /api/auth/signup` - Register a new user
+- `POST /api/auth/login` - Login a user
+- `GET /api/auth/check` - Check authentication status
 
 ### Messages
-
-* `GET /api/messages/users` - Get all users and unseen messages
-* `GET /api/messages/:userId` - Get messages with a specific user
-* `POST /api/messages/send/:userId` - Send a message to a user
-* `PUT /api/messages/mark/:messageId` - Mark a message as seen
+- `GET /api/messages/users` - Get all users and unseen messages
+- `GET /api/messages/:userId` - Get messages with a specific user
+- `POST /api/messages/send/:userId` - Send a message to a user
+- `PUT /api/messages/mark/:messageId` - Mark a message as seen
 
 ## Socket.IO Events
 
-* `connection` - User connects to the server
-* `disconnect` - User disconnects from the server
-* `getOnlineUsers` - Get list of online users
-* `receiveMessage` - Receive a new message
+- `connection` - User connects to the server
+- `disconnect` - User disconnects from the server
+- `getOnlineUsers` - Get list of online users
+- `receiveMessage` - Receive a new message
 
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## Creator
-* Manish Kumar 🚀
-
 1. Fork the repository
-
-2. Create your feature branch
-
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-
-3. Commit your changes
-
-   ```bash
-   git commit -m 'Add some amazing feature'
-   ```
-
-4. Push to the branch
-
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+## Creator
+* Manish Kumar 🚀
+
 ## Acknowledgments
 
-* Socket.IO for the real-time communication library
-* Tailwind CSS for the utility-first CSS framework
-* React and the entire MERN stack community
+- Socket.IO for the real-time communication library
+- Tailwind CSS for the utility-first CSS framework
+- React and the entire MERN stack community
 
-
+        
