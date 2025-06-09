@@ -16,6 +16,7 @@ export function AuthProvider({ children }) {
     const [onlineUsers, setOnlineUsers] = useState([]);
     const [socket, setSocket] = useState(null);
 
+    axios.defaults.headers.common['authorization'] = token;
     //Check if the User is authenticated or not
     const checkAuth = async ()=>{
         try {
@@ -25,9 +26,10 @@ export function AuthProvider({ children }) {
                 connectSocket(data.user); 
             }
         } catch (error) {
-            toast.error(error.message);
+            console.error(error.message);
         }
     }
+
 
     //Login User
     const login = async (state, credentials) => {
@@ -39,7 +41,7 @@ export function AuthProvider({ children }) {
                 setAuthUser(data.user);
                 connectSocket(data.user);
                 toast.success(data.message);
-                axios.defaults.headers.common['token']= data.token;
+                axios.defaults.headers.common['authorization'] = data.token;
                 localStorage.setItem('token',data.token);
             }else{
                 toast.error(data.message);
@@ -56,7 +58,7 @@ export function AuthProvider({ children }) {
         setAuthUser(null);
         setOnlineUsers([]);
         setSocket(null);
-        axios.defaults.headers.common['token']= null;
+        axios.defaults.headers.common['authorization'] = null;
         toast.success('Logged Out Successfully');
         socket?.disconnect();
     }
@@ -91,7 +93,7 @@ export function AuthProvider({ children }) {
 
     useEffect(()=>{
         if(token){
-            axios.defaults.headers.common['token']= token;
+            axios.defaults.headers.common['authorization'] = token;
         }
         checkAuth(); 
     },[])

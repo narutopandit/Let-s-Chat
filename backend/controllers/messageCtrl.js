@@ -7,7 +7,7 @@ import { userSocketMap } from "../server.js";
 export const getSidebarUser = async (req,res)=>{
     try {
         const userId = req.user._id;
-        const filteredUser = await User.findById({_id:{$ne:userId}});
+        const filteredUser = await User.find({_id:{$ne:userId}});
         const unseenMessages = {};
         const promises = filteredUser.map(async (user)=>{
             const messages = await Message.find({senderId:user._id,receiverId:userId,seen:false});
@@ -16,7 +16,7 @@ export const getSidebarUser = async (req,res)=>{
             }
         })
         await Promise.all(promises);
-        res.json({success:true,filteredUser,unseenMessages});
+        res.json({success:true,users:filteredUser,unseenMessages});
     } catch (error) {
         res.status(500).json({success:false,message:error.message});
     }
@@ -61,7 +61,7 @@ export const sendMessage = async (req, res) => {
         const receiverId = req.params.id;
         const senderId = req.user._id;
         let imageUrl;
-        if(!image){
+        if(image){
             const upload = await cloudinary.uploader.upload(image);
             imageUrl = upload.secure_url;
         }

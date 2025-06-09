@@ -5,7 +5,7 @@ import { getMessages, getSidebarUser, markAsSeen, sendMessage } from '../control
 const messageRouter = express.Router();
 
 messageRouter.get('/users',AuthMiddleware, getSidebarUser);
-messageRouter.get('/:id',AuthMiddleware, getMessages);
+messageRouter.get('/:selectedUserId',AuthMiddleware, getMessages); // Changed from :id to :selectedUserId
 messageRouter.put('/mark/:id',AuthMiddleware, markAsSeen);
 messageRouter.post('/send/:id',AuthMiddleware, sendMessage);
 

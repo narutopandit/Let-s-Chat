@@ -1,16 +1,29 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import assets from '../assets/chat-app-assets/assets';
+import { AuthContext } from '../../Context/AuthContext';
 const ProfilePage = () => {
-  const [selsectedimg, setSelectedImg] = useState(null);
+  const [selectedImg, setSelectedImg] = useState(null);
 
+  const {authUser, updateProfile} = useContext(AuthContext);
 const navigate = useNavigate();
-const [name , setName] = useState('Full Name')
-const [bio, setBio] = useState("hi Everyone, I am using Let`s Chat")
+const [name , setName] = useState(authUser.fullName)
+const [bio, setBio] = useState(authUser.bio)
 
 const handlesubmit = async (e)=>{
-    e. preventDefault ( ) ;
-    navigate( '/' )
+    e.preventDefault();
+    if(!selectedImg){
+     await updateProfile({fullName:name, bio});
+      navigate('/');
+      return;
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedImg);
+    reader.onload =async ()=>{
+      const base64image = reader.result;
+      await updateProfile({profilePic:base64image, fullName:name, bio});
+      navigate('/');
+    }
 }
   return (
     <div className='min-h-screen bg-cover bg-no-repeat flex items-center justify-center'>
@@ -19,7 +32,7 @@ const handlesubmit = async (e)=>{
          <h3 className='text-lg'>Profile details</h3>
          <label htmlFor="avatar" className='flex items-center gap-3 cursor-pointer'>
          <input onChange={(e)=>setSelectedImg(e.target.files[0])} type="file" id='avatar' accept='.png, .jpg, .jpeg' hidden />
-         <img src={selsectedimg? URL.createObjectURL(selsectedimg):assets.avatar_icon} alt="" className={`w-12 h-12 ${selsectedimg && 'rounded-full'}`} />
+         <img src={selectedImg? URL.createObjectURL(selectedImg):assets.avatar_icon} alt="" className={`w-12 h-12 ${selectedImg && 'rounded-full'}`} />
          upload profile image
          </label>
          <input value={name} onChange={(e)=>setName(e.target.value)} type="text" required placeholder='Your Name' className='p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-500' />
@@ -27,7 +40,7 @@ const handlesubmit = async (e)=>{
          value={bio} placeholder='Write profile bio' required className='p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-500' rows={4}></textarea>
          <button type='sumbit' className='bg-gradient-to-r from-purple-400 to-violet-600 text-white p-2 rounded-full text-lg cursor-pointer'>Save</button>
         </form>
-        <img className='max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10' src={assets.logo_icon} alt="" />
+        <img className={`max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10 ${selectedImg && 'rounded-full'}`} src={authUser?.profilePic || assets.logo_icon} alt="" />
     </div>
     </div>
   )
