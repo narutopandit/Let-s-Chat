@@ -39,6 +39,9 @@ A modern real-time chat application built with the MERN stack (MongoDB, Express.
 - **bcryptjs**: For password hashing
 - **Cloudinary**: For image storage and management
 
+  ## Live Preview
+  * https://let-s-chat-beige.vercel.app/
+
 ## Project Structure
 
 ```
